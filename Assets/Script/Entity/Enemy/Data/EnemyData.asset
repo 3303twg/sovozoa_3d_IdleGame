@@ -17,7 +17,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7018917853564039099, guid: 924d87daf9727694e93ea8e43ee7f696,
     type: 3}
   dropTable:
-    gold: 0
+    gold: 100
     exp: 0
     item:
     - {fileID: 11400000, guid: db7547d24907ede4e84ae8b14dc24fe4, type: 2}

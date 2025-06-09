@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe3a75f37b343b489dbc4a8a88f9bb6, type: 3}
   m_Name: ItemData
   m_EditorClassIdentifier: 
-  itemname: 
-  itemInfo: 
+  itemname: VeryStrongSSode
+  itemInfo: SuperStrong
   itemPrefab: {fileID: 5560224183575462306, guid: 4fcbfae562e8d3249aa4ae5ce492276f,
     type: 3}
   icon: {fileID: 21300000, guid: bf417337268e9b947952e53d343ab57d, type: 3}
@@ -22,8 +22,8 @@ MonoBehaviour:
   maxCnt: 0
   weapon:
     isEquip: 0
-    attackPower: 0
-    attackSpeed: 0
-    criticalChance: 0
-    criticalRatio: 0
-    accuracy: 0
+    attackPower: 33
+    attackSpeed: 3.5
+    criticalChance: 50
+    criticalRatio: 1.8
+    accuracy: 100
