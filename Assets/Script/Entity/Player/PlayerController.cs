@@ -18,7 +18,38 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public CharacterFSM characterFSM;
 
-    
+
+    private void OnEnable()
+    {
+        EventBus.Subscribe("AddItemStatEvent", AddStat);
+        EventBus.Subscribe("ReduceItemStatEvent", ReduceStat);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe("AddItemStatEvent", AddStat);
+        EventBus.Unsubscribe("ReduceItemStatEvent", ReduceStat);
+    }
+
+    public void AddStat(object obj)
+    {
+        ItemData data = (ItemData)obj;
+        stat.attackPower += data.attackPower;
+        stat.attackSpeed += data.attackSpeed;
+        stat.criticalChance += data.criticalChance;
+        stat.criticalRatio += data.criticalRatio;
+        stat.accuracy += data.accuracy;
+    }
+
+    public void ReduceStat(object obj)
+    {
+        ItemData data = (ItemData)obj;
+        stat.attackPower -= data.attackPower;
+        stat.attackSpeed -= data.attackSpeed;
+        stat.criticalChance -= data.criticalChance;
+        stat.criticalRatio -= data.criticalRatio;
+        stat.accuracy -= data.accuracy;
+    }
 
 
     private void Awake()

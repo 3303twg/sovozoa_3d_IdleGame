@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     public EnemyDataSo enemyDataSo;
     public EnemyStat enemyStat;
+    public GameObject cubePeacePrefab;
+    public GameObject goldPrefab;
+    public GameObject diamondPrefab;
 
     public bool isDie;
 
@@ -62,9 +66,19 @@ public class EnemyController : MonoBehaviour
             //일단 적이 죽을때 다음 스테이지 생성
             EventBus.Publish("CreateRoomEvent", null);
 
+            Instantiate(cubePeacePrefab, transform.position, Quaternion.identity);
+            int rand = Random.Range(15, 70);
+            int gold = Random.Range(enemyDataSo.dropTable.gold - (enemyDataSo.dropTable.gold / 10), enemyDataSo.dropTable.gold + (enemyDataSo.dropTable.gold / 10));
+            for (int  i = 0; i < rand; i ++)
+            {
+                GameObject go = Instantiate(goldPrefab, transform.position, Quaternion.identity);
+                go.GetComponent<Item>().value = gold / rand;
+            }
             foreach (var item in enemyDataSo.dropTable.item)
             {
+                
                 Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
+                
                 Destroy(gameObject);
             }
             
