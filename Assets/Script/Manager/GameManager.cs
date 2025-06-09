@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPos = Camera.main.transform.position + Camera.main.transform.forward * 25f;
         spawnPos.x = 0f;
         spawnPos.y = 0f;
+
+        
         GameObject mapObj = Instantiate(RoomPrefab, spawnPos, Quaternion.identity);
 
 
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(EnemyPrefab, spawnPos, Quaternion.identity, mapObj.transform);
         //이정도면 적당하더라
         go.transform.localPosition = new Vector3(-0.5f, 1.6f, 9f);
+
+        go.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
 
     }
 }
