@@ -14,13 +14,15 @@ public class PlayerIdleState : IState
 
     public void Enter()
     {
-        EventBus.Subscribe("testTarget", GetTarget);
+        //에네미에게 타겟 달라고 이벤트 호출
+        EventBus.Publish("TargetRequestEvent", owner.playerController.characterFSM);
     }
 
     public void Update()
     {
-        
-        if(owner.target != null)
+        //흠 좀 별로같은데
+        EventBus.Publish("TargetRequestEvent", owner.playerController.characterFSM);
+        if (owner.target != null)
         {
             owner.stateMachine.ChangeState(new PlayerMoveState(owner));
         }
@@ -28,7 +30,7 @@ public class PlayerIdleState : IState
 
     public void Exit()
     {
-        EventBus.Unsubscribe("testTarget", GetTarget);
+        //EventBus.Unsubscribe("TargetRequestEvent", GetTarget);
     }
 
     public void GetTarget(object obj)

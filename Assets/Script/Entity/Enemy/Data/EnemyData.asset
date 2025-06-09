@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 1bunEnemy
   hp: 100
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 7018917853564039099, guid: 924d87daf9727694e93ea8e43ee7f696,
+    type: 3}
   dropTable:
     gold: 0
     exp: 0

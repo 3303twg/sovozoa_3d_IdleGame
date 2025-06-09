@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void HitAttack()
+    {
+        EventBus.Publish("PlayerHitAttackEvent", null);
+    }
+
     public void EndAttack()
     {
         EventBus.Publish("PlayerEndAttackEvent", null);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -12,21 +13,27 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         enemyStat = new EnemyStat(enemyDataSo);
+        
     }
+
 
     private void OnEnable()
     {
         EventBus.Subscribe("EnemyHitEvent", RefrashHP);
+        EventBus.Subscribe("TargetRequestEvent", SetTarget);
     }
     private void OnDisable()
     {
         EventBus.Unsubscribe("EnemyHitEvent", RefrashHP);
+        EventBus.Unsubscribe("TargetRequestEvent", SetTarget);
 
     }
 
     void Start()
     {
         EventBus.Publish("EnemyInitEvent", enemyDataSo);
+        
+        UIManager.Instance.ShowUI("EnemyUI");
     }
 
     private void Update()
@@ -34,12 +41,11 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public void test()
+    public void SetTarget(object obj)
     {
-        EventBus.Publish("testTarget", gameObject);
-        UIManager.Instance.ShowUI("EnemyUI");
+        CharacterFSM fsm = (CharacterFSM)obj;
+        fsm.target = gameObject.transform;
     }
-
     public void RefrashHP(object obj)
     {
         enemyStat.curHp -= (float)obj;
@@ -49,6 +55,9 @@ public class EnemyController : MonoBehaviour
             isDie = true;
             EventBus.Publish("KillEnemyEvent", null);
             UIManager.Instance.HideUI("EnemyUI");
+
+            //일단 적이 죽을때 다음 스테이지 생성
+            EventBus.Publish("CreateRoomEvent", null);
 
             foreach (var item in enemyDataSo.dropTable.item)
             {
