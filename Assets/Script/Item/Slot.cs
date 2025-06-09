@@ -18,6 +18,26 @@ public class Slot
     {
         this.itemData = itemData;
     }
+
     
+    public void EquipItem()
+    {
+        isEquip = true;
+        EventBus.Publish("AddItemStatEvent", itemData);
+        EventBus.Subscribe("UnEquipEvent", ReduceStat);
+    }
+    public void ReduceStat(object obj)
+    {
+        Slot slot = (Slot)obj;
+        if (slot != this)
+        {
+            isEquip = false;
+            //구독해제
+            EventBus.Unsubscribe("UnEquipEvent", ReduceStat);
+            //스텟변경 호출
+            EventBus.Publish("ReduceItemStatEvent", itemData);
+        }
+    }
+
 }
 

@@ -22,4 +22,12 @@ public class SlotUI : MonoBehaviour
         icon.sprite = slot.itemData.icon;
         cntText.text = slot.itemData.cnt.ToString();
     }
+
+
+    //이건 버튼으로 호출함
+    public void SelectItem()
+    {
+        EventBus.Publish("SelectItemEvent", slot);
+    }
+
 }
