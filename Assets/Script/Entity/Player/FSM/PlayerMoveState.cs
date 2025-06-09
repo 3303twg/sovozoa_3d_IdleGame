@@ -16,11 +16,13 @@ public class PlayerMoveState : IState
     {
         targetPos = owner.target.transform.position + owner.target.transform.forward * 1.5f;
         targetPos.y = 0f;
+        owner.playerController.animator.SetBool(owner.playerController.playerAnimationData.MoveParameterHash, true);
     }
 
     public void Exit()
     {
         //throw new System.NotImplementedException();
+        owner.playerController.animator.SetBool(owner.playerController.playerAnimationData.MoveParameterHash, false);
     }
 
     public void Update()
