@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public EnemyDataSo enemyDataSo;
     public EnemyStat enemyStat;
 
+    public bool isDie;
 
     private void Awake()
     {
@@ -28,6 +29,11 @@ public class EnemyController : MonoBehaviour
         EventBus.Publish("EnemyInitEvent", enemyDataSo);
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void test()
     {
         EventBus.Publish("testTarget", gameObject);
@@ -37,5 +43,16 @@ public class EnemyController : MonoBehaviour
     {
         enemyStat.curHp -= (float)obj;
         EventBus.Publish("RefrashHPEvent", enemyStat.curHp / enemyStat.maxHp);
+        if (enemyStat.curHp <= 0)
+        {
+            isDie = true;
+
+            foreach(var item in enemyDataSo.dropTable.item)
+            {
+                Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
+                
+            }
+            
+        }
     }
 }

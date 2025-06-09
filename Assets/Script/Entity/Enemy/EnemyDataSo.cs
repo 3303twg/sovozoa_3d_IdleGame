@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,4 +10,14 @@ public class EnemyDataSo : ScriptableObject
     public float hp;
     public GameObject enemyPrefab;
     //List<Item>asdhiaifa?
+    public DropTable dropTable;
+}
+
+
+[Serializable]
+public class DropTable
+{
+    public int gold;
+    public int exp;
+    public List<ItemDataSo> item;
 }
