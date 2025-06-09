@@ -6,6 +6,8 @@ using static UnityEditor.Progress;
 public class Inventory : MonoBehaviour
 {
     public List<Slot> slots = new List<Slot>();
+    public GameObject slotPrefab;
+    public Transform slotParent;
 
 
     //이벤트버스로 주고받을까?
@@ -22,6 +24,7 @@ public class Inventory : MonoBehaviour
     //So로 줄필요 없을듯?
     public void AddItem(object obj)
     {
+        Debug.Log("?");
         ItemData itemData = obj as ItemData;
         //ItemData itemData = new ItemData(itemDataSo);
         if (itemData.isStackable == true)
@@ -30,10 +33,13 @@ public class Inventory : MonoBehaviour
             if (slot != null)
             {   //일단 최대치 체크 안해줌
                 slot.itemData.cnt++;
+                RefrashUI();
                 return;
             }
         }
         slots.Add(new Slot(itemData));
+        RefrashUI();
+
     }
 
     public void RemoveItem(ItemData itemData)
@@ -49,13 +55,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //일단은 전체 갱신
+    //일단은 비효율적인 전체 갱신
     public void RefrashUI()
     {
-        foreach(Slot slot in slots)
+        foreach (Transform child in slotParent)
         {
-            slot.cntText.text = slot.itemData.cnt.ToString();
-            slot.icon.sprite = slot.itemData.icon;
+            Destroy(child.gameObject);
+        }
+
+        foreach (Slot data in slots)
+        {
+            GameObject go = Instantiate(slotPrefab, slotParent);
+            SlotUI ui = go.GetComponent<SlotUI>();
+            ui.Bind(data);
         }
     }
 

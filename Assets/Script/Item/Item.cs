@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
 
     public void GetItem()
     {
+        Debug.Log("??");
         EventBus.Publish("AddItemEvent", itemdata);
         Destroy(gameObject);
     }

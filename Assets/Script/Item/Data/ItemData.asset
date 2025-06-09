@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemname: 
   itemInfo: 
-  itemPrefab: {fileID: 0}
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  itemPrefab: {fileID: 5560224183575462306, guid: 4fcbfae562e8d3249aa4ae5ce492276f,
+    type: 3}
+  icon: {fileID: 21300000, guid: bf417337268e9b947952e53d343ab57d, type: 3}
   isStackable: 0
   cnt: 0
   maxCnt: 0

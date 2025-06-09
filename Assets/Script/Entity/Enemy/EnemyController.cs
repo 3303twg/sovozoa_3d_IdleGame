@@ -50,7 +50,7 @@ public class EnemyController : MonoBehaviour
             foreach(var item in enemyDataSo.dropTable.item)
             {
                 Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
-                
+                Destroy(gameObject);
             }
             
         }
