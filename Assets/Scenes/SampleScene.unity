@@ -6521,8 +6521,8 @@ MonoBehaviour:
     AttackParameterHash: 0
   animator: {fileID: 0}
   stat:
-    attackPower: 100
-    attackSpeed: 1
+    attackPower: 3
+    attackSpeed: 5
     criticalChance: 5
     criticalRatio: 1.2
     accuracy: 80

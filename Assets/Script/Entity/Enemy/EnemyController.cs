@@ -31,9 +31,12 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        EventBus.Publish("EnemyInitEvent", enemyDataSo);
-        
         UIManager.Instance.ShowUI("EnemyUI");
+        //이름 변경
+        EventBus.Publish("EnemyInitEvent", enemyDataSo);
+        //최대치
+        EventBus.Publish("RefrashHPEvent", 1f);
+        
     }
 
     private void Update()
