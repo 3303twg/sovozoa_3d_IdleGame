@@ -18,14 +18,20 @@ public class PlayerAttackState : IState
     {
         Debug.Log("어태크");
         EventBus.Subscribe("PlayerEndAttackEvent", EndAttack);
+        EventBus.Subscribe("KillEnemyEvent", StopAttack);
     }
 
     public void Exit()
     {
         EventBus.Unsubscribe("PlayerEndAttackEvent", EndAttack);
+        EventBus.Unsubscribe("KillEnemyEvent", StopAttack);
         //owner.playerController.animator.SetBool(owner.playerController.playerAnimationData.AttackParameterHash, false);
     }
 
+    public void StopAttack(object obj)
+    {
+        owner.stateMachine.ChangeState(new PlayerIdleState(owner));
+    }
     public void Update()
     {
         //owner.playerController.stat.attackSpeed
@@ -37,11 +43,6 @@ public class PlayerAttackState : IState
                 owner.playerController.animator.speed = owner.playerController.animator.speed * owner.playerController.stat.attackSpeed;
                 owner.playerController.animator.SetTrigger(owner.playerController.playerAnimationData.AttackParameterHash);
 
-        }
-        //무슨조건주지
-        if (false)
-        {
-            owner.stateMachine.ChangeState(new PlayerIdleState(owner));
         }
     }
 

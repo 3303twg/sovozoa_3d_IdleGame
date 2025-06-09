@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
     public void test()
     {
         EventBus.Publish("testTarget", gameObject);
+        UIManager.Instance.ShowUI("EnemyUI");
     }
 
     public void RefrashHP(object obj)
@@ -46,8 +47,10 @@ public class EnemyController : MonoBehaviour
         if (enemyStat.curHp <= 0)
         {
             isDie = true;
+            EventBus.Publish("KillEnemyEvent", null);
+            UIManager.Instance.HideUI("EnemyUI");
 
-            foreach(var item in enemyDataSo.dropTable.item)
+            foreach (var item in enemyDataSo.dropTable.item)
             {
                 Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
