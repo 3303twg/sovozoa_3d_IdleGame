@@ -9,18 +9,36 @@ public class SlotUI : MonoBehaviour
     public Image icon;
     public TextMeshProUGUI cntText;
     public Slot slot;
+    public GameObject equipIcon;
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe("RefrashSlotEvent", UpdateUI);
+    }
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe("RefrashSlotEvent", UpdateUI);
+    }
     public void Bind(Slot data)
     {
         slot = data;
-        UpdateUI();
+        UpdateUI(null);
     }
 
-    public void UpdateUI()
+
+    public void UpdateUI(object obj)
     {
         if (slot == null) return;
         icon.sprite = slot.itemData.icon;
         cntText.text = slot.itemData.cnt.ToString();
+        if (slot.isEquip)
+        {
+            equipIcon.SetActive(true);
+        }
+        else
+        {
+            equipIcon.SetActive(false);
+        }
     }
 
 

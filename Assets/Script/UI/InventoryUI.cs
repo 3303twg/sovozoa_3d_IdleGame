@@ -32,6 +32,7 @@ public class InventoryUI : MonoBehaviour
         EventBus.Unsubscribe("SelectItemEvent", RefrashItemData);
     }
 
+    //인벤토리상단의 아이템 정보 표기용
     public void RefrashItemData(object obj)
     {
         slot = (Slot)obj;
@@ -45,6 +46,7 @@ public class InventoryUI : MonoBehaviour
         criticalRatioText.text = "CriticalRation : " + data.criticalRatio.ToString();
         accuracyText.text = "Accuracy : " + data.accuracy.ToString();
 
+        //장착버튼 활성화 및 비활성화
         if (slot.isEquip == true)
         {
             equipBtn.SetActive(false);
@@ -63,19 +65,35 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryUI.SetActive(true);
     }
-
+    //버튼으로 호출중
     public void HideInventory()
     {
         inventoryUI.SetActive(false);
     }
 
+
+    //버튼으로 호출중
     public void EquipBtn()
     {
         equipBtn.SetActive(false);
         unEquipBtn.SetActive(true);
 
-        slot.EquipItem();
+        
         EventBus.Publish("UnEquipEvent", slot);
+        slot.EquipItem();
         EventBus.Publish("EquipEvent", slot.itemData);
+        EventBus.Publish("RefrashSlotEvent", null);
+    }
+    //버튼으로 호출중
+    public void UnEquipBtn()
+    {
+        equipBtn.SetActive(true);
+        unEquipBtn.SetActive(false);
+        //slot.UnEquipItem();
+        EventBus.Publish("UnEquipEvent", slot);
+        EventBus.Publish("RefrashSlotEvent", null);
+
+
+
     }
 }

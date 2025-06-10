@@ -12,6 +12,8 @@ public class Slot
     public ItemData itemData;
     public bool isEquip = false;
 
+    public SlotUI slotUI;
+
 
     
     public Slot(ItemData itemData)
@@ -24,19 +26,28 @@ public class Slot
     {
         isEquip = true;
         EventBus.Publish("AddItemStatEvent", itemData);
-        EventBus.Subscribe("UnEquipEvent", ReduceStat);
+        EventBus.Subscribe("UnEquipEvent", UnEquipItem);
+    }
+
+    public void UnEquipItem(object obj)
+    {
+        Slot slot = (Slot)obj;
+        if (isEquip == true)
+        {
+            //EventBus.Publish("ReduceStat", itemData);
+            ReduceStat(itemData);
+            isEquip = false;
+        }
     }
     public void ReduceStat(object obj)
     {
-        Slot slot = (Slot)obj;
-        if (slot != this)
-        {
-            isEquip = false;
-            //구독해제
-            EventBus.Unsubscribe("UnEquipEvent", ReduceStat);
-            //스텟변경 호출
-            EventBus.Publish("ReduceItemStatEvent", itemData);
-        }
+        ItemData data = (ItemData)obj;
+
+        //구독해제
+        EventBus.Unsubscribe("UnEquipEvent", UnEquipItem);
+        //스텟변경 호출
+        EventBus.Publish("ReduceItemStatEvent", data);
+
     }
 
 }

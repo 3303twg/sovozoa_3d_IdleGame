@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReduceStat(object obj)
     {
+        Debug.Log("??");
         ItemData data = (ItemData)obj;
         stat.attackPower -= data.attackPower;
         stat.attackSpeed -= data.attackSpeed;
