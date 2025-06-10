@@ -15,6 +15,8 @@ public class ItemData
     public bool isStackable;
     public int cnt;
     public int maxCnt;
+    public int goldValue;
+
     [Header("공격력")]
     public float attackPower;
     [Header("공격속도 ex)1.2배율")]
@@ -31,6 +33,8 @@ public class ItemData
         this.cnt = dataSo.cnt;
         this.maxCnt = dataSo.maxCnt;
         this.isStackable = dataSo.isStackable;
+        this.goldValue = dataSo.goldValue;
+
         this.itemName = dataSo.itemname;
         this.itemInfo = dataSo.itemInfo;
         this.itemPrefab = dataSo.itemPrefab;

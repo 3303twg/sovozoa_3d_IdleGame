@@ -15,6 +15,8 @@ public class ItemDataSo : ScriptableObject
     public int cnt;
     public int maxCnt;
 
+    public int goldValue;
+
     [SerializeField]
     public WeaponData weapon;
 }

@@ -14,11 +14,13 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         EventBus.Subscribe("AddItemEvent", AddItem);
+        EventBus.Subscribe("RemoveItemEvent", RemoveItem);
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe("AddItemEvent", AddItem);
+        EventBus.Unsubscribe("RemoveItemEvent", RemoveItem);
     }
 
     //So로 줄필요 없을듯?
@@ -42,14 +44,17 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void RemoveItem(ItemData itemData)
+    public void RemoveItem(object obj)
     {
-        Slot slot = slots.Find(s => s.itemData == itemData);
+        //ItemData itemData = (ItemData)obj;
+        //Slot slot = slots.Find(s => s.itemData == itemData);
+        Slot slot = (Slot)obj;
         if (slot != null)
         {
             slot.itemData.cnt--;
             if (slot.itemData.cnt <= 0)
             {
+                Debug.Log("일안함?");
                 slots.Remove(slot);
             }
         }
