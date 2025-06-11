@@ -19,7 +19,12 @@ public class EnemyController : MonoBehaviour
     {
         //스테이지와 진행카운트에 따라 배율 적용해줄듯?
         enemyStat = new EnemyStat(enemyDataSo);
-        
+
+        //난이도별 배율조정
+        enemyStat.curHp *= StageDataBox.Instance.stageDataSo.hpRatio;
+        enemyStat.dropTable.exp *= (int)StageDataBox.Instance.stageDataSo.rewardRatio;
+        enemyStat.dropTable.gold *= (int)StageDataBox.Instance.stageDataSo.rewardRatio;
+
     }
 
 
