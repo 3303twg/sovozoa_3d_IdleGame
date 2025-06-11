@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 477a149e2eff5114ea9cba55dc8c316d, type: 3}
-  m_Name: Stage_01
+  m_Name: Stage_02
   m_EditorClassIdentifier: 
-  stageID: 1
-  stageName: "1\uC2A4\uD14C\uC774\uC9C0"
-  hpRatio: 1
-  rewardRatio: 1
+  stageID: 2
+  stageName: "2\uC2A4\uD14C\uC774\uC9C0"
+  hpRatio: 2
+  rewardRatio: 2
   mapPrefabs:
-  - {fileID: 4252559848527818562, guid: b9be900349ae8854bb03e0e518d20d08, type: 3}
-  - {fileID: 3752888363227056024, guid: 064d8f32f5c448b44b2a24db910c668b, type: 3}
-  - {fileID: 2670026030494456204, guid: 498c999bef42d434ca570339d852e0bc, type: 3}
+  - {fileID: 1225448954187298690, guid: 67c890e273396f846834d604469523b7, type: 3}
   enemyPrefabs:
   - {fileID: 1647204882740035178, guid: a3bf0dbe032f00245a4fbf61ccaa170c, type: 3}
   - {fileID: 7018917853564039099, guid: 924d87daf9727694e93ea8e43ee7f696, type: 3}

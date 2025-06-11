@@ -50,6 +50,7 @@ public class UpgradeUI : MonoBehaviour
         int temp = Random.Range(0, 100);
         if(temp > 50)
         {
+            slot = inventoryUI.slot;
             slot.itemData.attackPower += slot.itemData.attackPower / Random.Range(1, 20);
             slot.itemData.attackSpeed += slot.itemData.attackSpeed / Random.Range(1, 20);
             slot.itemData.criticalChance += Random.Range(-5, 5);
@@ -59,15 +60,21 @@ public class UpgradeUI : MonoBehaviour
             if (slot.isEquip)
             {
                 inventoryUI.EquipBtn();
+                
             }
-            
+            inventoryUI.RefrashItemData(slot);
+
 
         }
         else
         {
+            inventoryUI.RefrashItemData(null);
             inventory.RemoveItem(slot);
             resultPopUpText.text = "Fail";
         }
+        
+        inventory.RefrashUI();
+        
         ShowResultPopUp();
     }
 
