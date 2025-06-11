@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         EventBus.Unsubscribe("ReduceItemStatEvent", ReduceStat);
     }
 
+    //아이템 착용시 스탯 상승 갱신
     public void AddStat(object obj)
     {
         ItemData data = (ItemData)obj;
@@ -41,9 +42,9 @@ public class PlayerController : MonoBehaviour
         stat.accuracy += data.accuracy;
     }
 
+    //아이템 착용 해제시 스탯 하락 갱신
     public void ReduceStat(object obj)
     {
-        Debug.Log("??");
         ItemData data = (ItemData)obj;
         stat.attackPower -= data.attackPower;
         stat.attackSpeed -= data.attackSpeed;
@@ -59,22 +60,14 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         characterFSM = GetComponent<CharacterFSM>();
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    //애니메이션중 공격을 맞추는타이밍때 호출
     public void HitAttack()
     {
         EventBus.Publish("PlayerHitAttackEvent", null);
     }
 
+    //애니메이션중 공격이 종료될경우 호출
     public void EndAttack()
     {
         EventBus.Publish("PlayerEndAttackEvent", null);

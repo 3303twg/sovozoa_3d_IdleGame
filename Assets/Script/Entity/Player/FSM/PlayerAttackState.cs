@@ -44,7 +44,6 @@ public class PlayerAttackState : IState
                 owner.stateMachine.ChangeState(new PlayerIdleState(owner));
                 return;
             }
-            Debug.Log("와우");
             isAttack = true;
             //공격속도
             owner.playerController.animator.speed = owner.playerController.animator.speed * owner.playerController.stat.attackSpeed;
@@ -54,6 +53,7 @@ public class PlayerAttackState : IState
         }
     }
     //초비상 hasExitTime 꺼야하는데 ㄲ끄면 이슈생김 좀 중대한 문제임 공속관련
+    //애니메이션중 검이 끝까지 이동했을때 호출
     public void HitAttack(object obj)
     {
         EventBus.Publish("EnemyHitEvent", owner.playerController.stat.attackPower);
@@ -62,10 +62,9 @@ public class PlayerAttackState : IState
 
     }
 
+    //애니메이션중 모션 종료시 호출
     public void EndAttack(object obj)
     {
-        Debug.Log("호우");
-        
         isAttack = false;
         owner.playerController.animator.speed = 1f;
     }

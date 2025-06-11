@@ -20,6 +20,7 @@ MonoBehaviour:
   isStackable: 0
   cnt: 0
   maxCnt: 0
+  goldValue: 2000
   weapon:
     isEquip: 0
     attackPower: 33

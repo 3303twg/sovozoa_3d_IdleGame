@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public EnemyDataSo enemyDataSo;
+    [SerializeField]
     public EnemyStat enemyStat;
     public GameObject cubePeacePrefab;
     public GameObject goldPrefab;
@@ -16,6 +17,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        //스테이지와 진행카운트에 따라 배율 적용해줄듯?
         enemyStat = new EnemyStat(enemyDataSo);
         
     }
@@ -78,10 +80,9 @@ public class EnemyController : MonoBehaviour
             {
                 
                 Instantiate(item.itemPrefab, transform.position, Quaternion.identity);
-                
-                Destroy(gameObject);
             }
-            
+            Destroy(gameObject);
+
         }
     }
 }

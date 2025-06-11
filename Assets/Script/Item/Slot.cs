@@ -21,14 +21,15 @@ public class Slot
         this.itemData = itemData;
     }
 
-    
+    //ÀåÂø
     public void EquipItem()
     {
         isEquip = true;
         EventBus.Publish("AddItemStatEvent", itemData);
         EventBus.Subscribe("UnEquipEvent", UnEquipItem);
     }
-
+    
+    //ÀåÂøÇØÁ¦
     public void UnEquipItem(object obj)
     {
         Slot slot = (Slot)obj;
@@ -39,6 +40,8 @@ public class Slot
             isEquip = false;
         }
     }
+
+    //Âø¿ë ÇØÁ¦½Ã ½ºÅÈ °»½Å
     public void ReduceStat(object obj)
     {
         ItemData data = (ItemData)obj;

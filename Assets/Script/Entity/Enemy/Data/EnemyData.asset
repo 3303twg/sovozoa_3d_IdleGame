@@ -18,6 +18,6 @@ MonoBehaviour:
     type: 3}
   dropTable:
     gold: 100
-    exp: 0
+    exp: 10
     item:
     - {fileID: 11400000, guid: db7547d24907ede4e84ae8b14dc24fe4, type: 2}

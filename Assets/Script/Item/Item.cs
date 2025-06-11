@@ -25,10 +25,10 @@ public class Item : MonoBehaviour
     {
         Vector3 baseDirection = transform.up;
 
-        // 기준 방향에 무작위 벡터를 섞음
+        //랜덤 방향
         Vector3 randomOffset = new Vector3(
             Random.Range(-0.5f, 0.5f),
-            Random.Range(-0.1f, 0.1f),  // Y축 흔들림은 줄일 수도 있음
+            Random.Range(-0.1f, 0.1f),
             Random.Range(-0.5f, 0.5f)
         );
 

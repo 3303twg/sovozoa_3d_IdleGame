@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 using static UnityEngine.Rendering.DebugUI;
 
 public class InventoryUI : MonoBehaviour
@@ -24,15 +25,18 @@ public class InventoryUI : MonoBehaviour
     public GameObject unEquipBtn;
 
     public GameObject sellBtn;
-    Slot slot;
+    public Slot slot;
+
     private void OnEnable()
     {
         inventory = GetComponent<Inventory>();
+        //EventBus.Subscribe("AddItemEvent", ChangeScrollSize);
         EventBus.Subscribe("SelectItemEvent", RefrashItemData);
     }
 
     private void OnDisable()
     {
+        //EventBus.Unsubscribe("AddItemEvent", ChangeScrollSize);
         EventBus.Unsubscribe("SelectItemEvent", RefrashItemData);
     }
 
@@ -112,7 +116,7 @@ public class InventoryUI : MonoBehaviour
         EventBus.Publish("UnEquipEvent", slot);
         EventBus.Publish("RefrashSlotEvent", null);
     }
-
+    //버튼으로 호출중
     public void SellBtn()
     {
         if (slot != null)

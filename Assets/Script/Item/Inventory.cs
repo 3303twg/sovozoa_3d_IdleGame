@@ -24,9 +24,9 @@ public class Inventory : MonoBehaviour
     }
 
     //So로 줄필요 없을듯?
+    //아이템 추가
     public void AddItem(object obj)
     {
-        Debug.Log("?");
         ItemData itemData = obj as ItemData;
         //ItemData itemData = new ItemData(itemDataSo);
         if (itemData.isStackable == true)
@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
 
     }
 
+    //아이템 제거
     public void RemoveItem(object obj)
     {
         //ItemData itemData = (ItemData)obj;
@@ -54,7 +55,6 @@ public class Inventory : MonoBehaviour
             slot.itemData.cnt--;
             if (slot.itemData.cnt <= 0)
             {
-                Debug.Log("일안함?");
                 slots.Remove(slot);
             }
         }
@@ -74,24 +74,5 @@ public class Inventory : MonoBehaviour
             SlotUI ui = go.GetComponent<SlotUI>();
             ui.Bind(data);
         }
-    }
-
-    public void EquipItem()
-    {
-
-    }
-    public void UnEquipItem()
-    {
-
-    }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

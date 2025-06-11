@@ -25,7 +25,7 @@ public class SlotUI : MonoBehaviour
         UpdateUI(null);
     }
 
-
+    //½½·Ô °»½Å
     public void UpdateUI(object obj)
     {
         if (slot == null) return;
